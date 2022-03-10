@@ -1,0 +1,69 @@
+SQL> create table examhalltickets(htno number(15) primary key,studentname varchar2(20),examcenter varchar2(30),regid number(4) references university(regid));
+
+Table created.
+SQL> desc examhalltickets;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ HTNO                                      NOT NULL NUMBER(15)
+ STUDENTNAME                                        VARCHAR2(20)
+ EXAMCENTER                                         VARCHAR2(30)
+ REGID                                              NUMBER(4)
+SQL> insert into examhalltickets values(&htnum,'&sname','&examcenter',&regdnum);
+Enter value for htnum: 202101
+Enter value for sname: sirisha
+Enter value for examcenter: kkd
+Enter value for regdnum: 001
+old   1: insert into examhalltickets values(&htnum,'&sname','&examcenter',&regdnum)
+new   1: insert into examhalltickets values(202101,'sirisha','kkd',001)
+
+1 row created.
+
+SQL> /
+Enter value for htnum: 202102
+Enter value for sname: sai
+Enter value for examcenter: pitapuram
+Enter value for regdnum: 001
+old   1: insert into examhalltickets values(&htnum,'&sname','&examcenter',&regdnum)
+new   1: insert into examhalltickets values(202102,'sai','pitapuram',001)
+
+1 row created.
+
+SQL> /
+Enter value for htnum: 202103
+Enter value for sname: siva
+Enter value for examcenter: kakinada
+Enter value for regdnum: 003
+old   1: insert into examhalltickets values(&htnum,'&sname','&examcenter',&regdnum)
+new   1: insert into examhalltickets values(202103,'siva','kakinada',003)
+
+1 row created.
+
+SQL> /
+Enter value for htnum: 202104
+Enter value for sname: uma
+Enter value for examcenter: kkd
+Enter value for regdnum: 004
+old   1: insert into examhalltickets values(&htnum,'&sname','&examcenter',&regdnum)
+new   1: insert into examhalltickets values(202104,'uma','kkd',004)
+
+1 row created.
+
+SQL> /
+Enter value for htnum: 202105
+Enter value for sname: sudha
+Enter value for examcenter: samarlakota
+Enter value for regdnum: 005
+old   1: insert into examhalltickets values(&htnum,'&sname','&examcenter',&regdnum)
+new   1: insert into examhalltickets values(202105,'sudha','samarlakota',005)
+
+1 row created.
+
+SQL> select * from examhalltickets;
+
+      HTNO STUDENTNAME          EXAMCENTER                          REGID
+---------- -------------------- ------------------------------ ----------
+    202101 sirisha              kkd                                     1
+    202102 sai                  pitapuram                               1
+    202103 siva                 kakinada                                3
+    202104 uma                  kkd                                     4
+    202105 sudha                samarlakota                             5
