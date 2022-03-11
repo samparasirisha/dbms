@@ -1,0 +1,76 @@
+SQL> connect abc/siri
+Connected.
+
+SQL> insert into system.employee values(&no,'&name','&desig',&sal);
+
+SQL> select * from system.employee;
+
+       ENO ENAME                          DESIGN                   SALARY
+---------- ------------------------------ -------------------- ----------
+         1 siri                           manager                   45000
+         2 sai                            engineer                  33000
+         3 uma                            analyst                   40000
+         4 aruna                          developer                 30000
+         5 durga                          team leader               40000
+       
+       
+SQL> commit;
+
+Commit complete.
+
+
+SQL> savepoint xxx;
+
+Savepoint created.
+
+SQL>  insert into system.employee values(&no,'&name','&desig',&sal);
+
+SQL> select * from system.employee;
+
+       ENO ENAME                          DESIGN                   SALARY
+---------- ------------------------------ -------------------- ----------
+         1 siri                         manager                   45000
+         2 sai                          engineer                  33000
+         3 uma                          analyst                   40000
+         4 aruna                        developer                 30000
+         5 durga                        team leader               40000
+         6 lalitha                      manager                   40000
+         7 prabha                       manager                   25000
+
+SQL> savepoint yyy;
+
+Savepoint created.
+
+SQL> rollback to xxx;
+
+Rollback complete.
+
+SQL> select * from system.employee;
+
+       ENO ENAME                          DESIGN                   SALARY
+---------- ------------------------------ -------------------- ----------
+         1 siri                            manager                   45000
+         2 sai                             engineer                  33000
+         3 uma                             analyst                   40000
+         4 aruna                           developer                 30000
+         5 durga                           team leader               40000
+       
+       
+       
+SQL>  insert into system.employee values(&no,'&name','&desig',&sal);
+
+SQL> select *from system.employee;
+
+       ENO ENAME                          DESIGN                   SALARY
+---------- ------------------------------ -------------------- ----------
+         1 siri                         manager                   45000
+         2 sai                          engineer                  33000
+         3 uma                          analyst                   40000
+         4 aruna                        developer                 30000
+         5 durga                        team leader               40000
+         6 lalitha                      manager                   40000
+         7 prabha                       manager                   25000
+
+SQL> commit;
+
+Commit complete.
