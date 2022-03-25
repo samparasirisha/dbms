@@ -1,0 +1,150 @@
+create table employee(eno number(4),ename varchar2(20),design varchar2(20),dob date,doj date,salary number(6));
+
+Table created.
+
+SQL> create table employee(eno number(4),ename varchar2(20),design varchar2(20),dob date,doj date,salary number(6));
+create table employee(eno number(4),ename varchar2(20),design varchar2(20),dob date,doj date,salary number(6))
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+
+SQL> create table employee(eno number(4),ename varchar2(20),design varchar2(20),dob date,doj date,salary number(6));
+create table employee(eno number(4),ename varchar2(20),design varchar2(20),dob date,doj date,salary number(6))
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+
+SQL>  insert into employee values(&no,'&name','&desig','&dob','&doj',&sal);
+Enter value for no: 5
+Enter value for name: df
+Enter value for desig: des
+Enter value for dob: 45
+Enter value for doj: 4
+Enter value for sal: 6
+old   1:  insert into employee values(&no,'&name','&desig','&dob','&doj',&sal)
+new   1:  insert into employee values(5,'df','des','45','4',6)
+ insert into employee values(5,'df','des','45','4',6)
+                                          *
+ERROR at line 1:
+ORA-01847: day of month must be between 1 and last day of month
+
+
+SQL> /
+Enter value for no: 101
+Enter value for name: sai
+Enter value for desig: jal
+Enter value for dob: 19-jul-2000
+Enter value for doj: 19-jul-2020
+Enter value for sal: 30000
+old   1:  insert into employee values(&no,'&name','&desig','&dob','&doj',&sal)
+new   1:  insert into employee values(101,'sai','jal','19-jul-2000','19-jul-2020',30000)
+
+1 row created.
+
+SQL> /
+Enter value for no: 102
+Enter value for name: siri
+Enter value for desig: hal
+Enter value for dob: 09-aug-2000
+Enter value for doj: 08-jul-2020
+Enter value for sal: 40000
+old   1:  insert into employee values(&no,'&name','&desig','&dob','&doj',&sal)
+new   1:  insert into employee values(102,'siri','hal','09-aug-2000','08-jul-2020',40000)
+
+1 row created.
+
+SQL> /
+Enter value for no: 103
+Enter value for name: siva
+Enter value for desig: emp
+Enter value for dob: 09-oct-2020
+Enter value for doj: 02-jun-2022
+Enter value for sal: 4000
+old   1:  insert into employee values(&no,'&name','&desig','&dob','&doj',&sal)
+new   1:  insert into employee values(103,'siva','emp','09-oct-2020','02-jun-2022',4000)
+
+1 row created.
+
+SQL> /
+Enter value for no: 104
+Enter value for name: uma
+Enter value for desig: empe
+Enter value for dob: 05-oct-2002
+Enter value for doj: 03-aug-2003
+Enter value for sal: 30000
+old   1:  insert into employee values(&no,'&name','&desig','&dob','&doj',&sal)
+new   1:  insert into employee values(104,'uma','empe','05-oct-2002','03-aug-2003',30000)
+
+1 row created.
+
+SQL> /
+Enter value for no: 345
+Enter value for name: aruna
+Enter value for desig: doc
+Enter value for dob: 04-jun-1999
+Enter value for doj: 02-dec-1990
+Enter value for sal: 30002
+old   1:  insert into employee values(&no,'&name','&desig','&dob','&doj',&sal)
+new   1:  insert into employee values(345,'aruna','doc','04-jun-1999','02-dec-1990',30002)
+
+1 row created.
+
+SQL>  select * from employee;
+
+       ENO ENAME                DESIGN               DOB       DOJ
+---------- -------------------- -------------------- --------- ---------
+    SALARY
+----------
+       101 sai                  jal                  19-JUL-00 19-JUL-20
+     30000
+
+       102 siri                 hal                  09-AUG-00 08-JUL-20
+     40000
+
+       103 siva                 emp                  09-OCT-20 02-JUN-22
+      4000
+
+
+       ENO ENAME                DESIGN               DOB       DOJ
+---------- -------------------- -------------------- --------- ---------
+    SALARY
+----------
+       104 uma                  empe                 05-OCT-02 03-AUG-03
+     30000
+
+       345 aruna                doc                  04-JUN-99 02-DEC-90
+     30002
+
+
+SQL> set linesize 300;
+SQL>  select * from employee;
+
+       ENO ENAME                DESIGN               DOB       DOJ           SALARY
+---------- -------------------- -------------------- --------- --------- ----------
+       101 sai                  jal                  19-JUL-00 19-JUL-20      30000
+       102 siri                 hal                  09-AUG-00 08-JUL-20      40000
+       103 siva                 emp                  09-OCT-20 02-JUN-22       4000
+       104 uma                  empe                 05-OCT-02 03-AUG-03      30000
+       345 aruna                doc                  04-JUN-99 02-DEC-90      30002
+
+SQL>  select eno,ename,trunc((sysdate-to_date(doj))/365.25,0) as experience_in_years from employee;
+
+       ENO ENAME                EXPERIENCE_IN_YEARS
+---------- -------------------- -------------------
+       101 sai                                    1
+       102 siri                                   1
+       103 siva                                   0
+       104 uma                                   18
+       345 aruna                                 31
+
+SQL> select eno,ename,trunc((sysdate-to_date(dob))/365.25,0) as age_in_years from employee;
+
+       ENO ENAME                AGE_IN_YEARS
+---------- -------------------- ------------
+       101 sai                            21
+       102 siri                           21
+       103 siva                            1
+       104 uma                            19
+       345 aruna                          22
